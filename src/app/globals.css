@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design tokens (dark-only app) ───────────────────────────── */
+:root {
+  /* shadcn/radix required — mapeados para o tema escuro */
+  --background:         220 42% 5%;
+  --foreground:         220 18% 92%;
+  --card:               220 38% 7%;
+  --card-foreground:    220 18% 92%;
+  --popover:            220 38% 8%;
+  --popover-foreground: 220 18% 92%;
+  --primary:            0 62% 46%;
+  --primary-foreground: 0 0% 100%;
+  --secondary:          220 28% 14%;
+  --secondary-foreground: 220 18% 80%;
+  --muted:              220 28% 11%;
+  --muted-foreground:   220 14% 52%;
+  --accent:             220 28% 14%;
+  --accent-foreground:  220 18% 80%;
+  --destructive:        0 58% 40%;
+  --destructive-foreground: 0 0% 100%;
+  --border:             220 28% 13%;
+  --input:              220 28% 12%;
+  --ring:               0 62% 46%;
+  --radius:             0.5rem;
+}
+
+/* ─── Base ─────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-syne), system-ui, sans-serif;
+  }
+  /* Números sempre em mono */
+  .font-mono, [class*="font-mono"] {
+    font-family: var(--font-jetbrains), 'Courier New', monospace;
+  }
+}
+
+/* ─── Componentes reutilizáveis ─────────────────────────────────── */
+@layer components {
+
+  /* Seção card */
+  .card-section {
+    @apply bg-card border border-border rounded-xl p-5;
+  }
+
+  .section-label {
+    @apply text-[10px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-4;
+  }
+
+  /* Campo de formulário */
+  .field {
+    @apply space-y-1.5;
+  }
+
+  .hint {
+    @apply text-[11px] text-muted-foreground font-mono mt-1 leading-tight;
+  }
+
+  /* Métricas rápidas */
+  .metric-card {
+    @apply bg-muted/40 border border-border rounded-lg p-3.5 text-center;
+  }
+  .metric-label {
+    @apply text-[10px] uppercase tracking-widest text-muted-foreground mb-2 font-mono;
+  }
+  .metric-value {
+    @apply text-[15px] font-semibold text-foreground font-mono leading-tight;
+  }
+
+  /* Toggle de especialização */
+  .espec-row {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer select-none
+           border border-blue-900/35 bg-blue-950/15 hover:bg-blue-950/25 transition-colors;
+  }
+  .espec-badge {
+    @apply text-[11px] px-2 py-0.5 rounded border border-blue-900/40
+           bg-blue-950/50 text-blue-400 font-semibold font-mono flex-shrink-0;
+  }
+
+  /* Impacto do reajuste */
+  .impact-item {
+    @apply bg-muted/40 border border-border/50 rounded-lg px-3 py-2
+           flex justify-between items-center;
+  }
+
+  /* ── Contracheque ────────────────────────────── */
+  .contracheque {
+    @apply border border-border rounded-xl overflow-hidden;
+  }
+  .contracheque-header {
+    @apply bg-muted/50 px-5 py-3.5 border-b border-border
+           flex justify-between items-center gap-4;
+  }
+  .contracheque-org {
+    @apply text-sm font-bold text-foreground tracking-wider;
+  }
+  .contracheque-sub {
+    @apply text-[11px] text-muted-foreground mt-0.5 font-mono;
+  }
+  .contracheque-body {
+    @apply grid grid-cols-1 sm:grid-cols-2;
+  }
+  .cb-col {
+    @apply p-5;
+  }
+  .cb-col-title {
+    @apply text-[10px] font-semibold tracking-[0.12em] uppercase
+           text-muted-foreground mb-3 font-mono;
+  }
+  .cb-row {
+    @apply flex justify-between py-[5px] border-b border-border/40
+           text-[13px] last:border-0;
+  }
+  .cb-row-label  { @apply text-muted-foreground; }
+  .cb-row-value  { @apply font-mono font-medium text-foreground; }
+  .contracheque-totais {
+    @apply grid grid-cols-2 border-t border-border;
+  }
+  .cb-tot {
+    @apply px-5 py-2.5 flex justify-between items-center text-[13px];
+  }
+  .contracheque-footer {
+    @apply border-t border-border px-5 py-4
+           flex justify-between items-center bg-green-950/10;
+  }
+  .contracheque-liquido {
+    @apply text-2xl font-bold text-green-400 font-mono;
+  }
+
+  /* Mini form (ComparePanel) */
+  .mini-form-title {
+    @apply text-xs font-bold tracking-wider uppercase text-primary mb-3;
+  }
+
+  /* Aviso LGPD */
+  .lgpd-warning {
+    @apply border border-red-900/30 bg-red-950/15 rounded-xl p-5;
+  }
+  .lgpd-title {
+    @apply flex items-center gap-1.5 text-[11px] font-bold
+           text-red-400 tracking-wider uppercase mb-2;
+  }
+  .lgpd-body {
+    @apply text-[12px] text-muted-foreground leading-relaxed;
+  }
+}
+
+/* ─── Print ─────────────────────────────────────────────────────── */
+@media print {
+  html, body {
+    background: white !important;
+    color: #1a1a1a !important;
+    font-size: 11pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Oculta tudo menos o contracheque */
+  header,
+  nav,
+  [role="tablist"],
+  [data-radix-tabs-content]:not([data-state="active"]),
+  .no-print,
+  .lgpd-warning {
+    display: none !important;
+  }
+
+  /* Mostra só a seção de contracheque */
+  #contracheque-section {
+    border: 1pt solid #bbb !important;
+    border-radius: 6pt;
+    page-break-inside: avoid;
+  }
+
+  .contracheque-header {
+    background: #f0f0f0 !important;
+    border-color: #ccc !important;
+  }
+  .contracheque-org         { color: #111 !important; }
+  .contracheque-sub         { color: #555 !important; }
+  .cb-col-title             { color: #888 !important; }
+  .cb-row-label             { color: #555 !important; }
+  .cb-row-value             { color: #111 !important; font-family: 'Courier New', monospace !important; }
+  .contracheque-liquido     { color: #1a7a45 !important; font-family: 'Courier New', monospace !important; }
+  .contracheque-footer      { background: #f5fff9 !important; border-color: #ccc !important; }
+  .contracheque-totais      { border-color: #ddd !important; }
+
+  .text-red-400, .text-red-300 { color: #c0392b !important; }
+  .text-green-400             { color: #1a7a45 !important; }
+  .line-through               { opacity: 0.5; }
+
+  @page {
+    margin: 1.5cm;
+  }
+}
