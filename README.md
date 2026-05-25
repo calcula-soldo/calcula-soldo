@@ -25,14 +25,14 @@ legislação vigente.
 ### 1. Instalar dependências
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Instalar componentes shadcn/ui
 
 ```bash
-npx shadcn@latest init
-npx shadcn@latest add badge button checkbox input label select separator slider tabs tooltip
+pnpm dlx shadcn@latest init
+pnpm dlx shadcn@latest add badge button checkbox input label select separator slider tabs tooltip
 ```
 
 > Quando perguntado sobre o estilo, escolha **New York**. Para o tema, **Zinc**.
@@ -41,7 +41,7 @@ npx shadcn@latest add badge button checkbox input label select separator slider 
 ### 3. Rodar em desenvolvimento
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Acesse [http://localhost:3000](http://localhost:3000).

@@ -1,0 +1,10 @@
+# pnpm 11 — configurações do projeto
+
+# Desabilita a proteção contra pacotes publicados há < 24h.
+# Trade-off aceitável para um app frontend estático sem servidor.
+minimumReleaseAge: 0
+
+# Scripts de build permitidos (dependências internas do Next.js)
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
