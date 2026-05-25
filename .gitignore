@@ -34,3 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# package managers — pnpm is canonical; ignore npm lockfile
+package-lock.json
